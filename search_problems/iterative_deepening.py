@@ -26,7 +26,6 @@ def depth_limited_search(problem: Problem, depth: int) -> Optional[Node]:
 	frontier.put(Node(problem.initial_state))
 
 	while not frontier.empty():
-		print('hi')
 		node: Node = frontier.get()
 		if problem.is_goal(node.state):
 			return node

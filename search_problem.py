@@ -24,8 +24,6 @@ class CGW(Problem):
 
 	The initial state of the CGW problem is (1,"CGW","").
 	"""
-	count = 0
-	visited = set()
 
 	def __init__(self, initial_state):
 		"""
@@ -58,11 +56,6 @@ class CGW(Problem):
 	    Return True if the problem is solved.  I.e.: human and all items are on
 	    the right side.
 	    """
-		if state in CGW.visited:
-			print('ALREADY VISITED', state)
-		CGW.visited.add(state)
-		print(CGW.count, '-', state)
-		CGW.count = CGW.count + 1
 		return state[0] == 2 and state[2] == "CGW"
 
 	def transition(self, state, action):
