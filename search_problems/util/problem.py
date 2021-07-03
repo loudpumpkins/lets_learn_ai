@@ -47,5 +47,5 @@ class Problem(object):
 		:param node: Node
 		:return: list[Node]
 		"""
-		return [Node(self.transition(node.state, action)) for action in
+		return [Node(self.transition(node.state, action), node, action) for action in
 		        self.actions(node.state)]
