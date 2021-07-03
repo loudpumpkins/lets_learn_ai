@@ -47,6 +47,7 @@ def breadth_first_search_with_reached(problem: Problem) -> Optional[Node]:
 	:return: Node or None
 	"""
 	explored = set()
+	explored.add(problem.initial_state)
 	frontier = queue.SimpleQueue()
 	frontier.put(Node(problem.initial_state))
 
@@ -54,9 +55,9 @@ def breadth_first_search_with_reached(problem: Problem) -> Optional[Node]:
 		node: Node = frontier.get()
 		if problem.is_goal(node.state):
 			return node
-		explored.add(node.state)
 		for child in problem.expand(node):
-			if child.state not in explored and child not in frontier:
+			if child.state not in explored:
+				explored.add(child.state)
 				frontier.put(child)
 	return None
 
@@ -77,15 +78,16 @@ def breadth_first_search_with_reached_and_tag(problem: Problem) -> Optional[Node
 	:return: Node or None
 	"""
 	explored = set()
+	explored.add(problem.initial_state)
 	frontier = queue.SimpleQueue()
 	frontier.put(Node(problem.initial_state))
 
 	while not frontier.empty():
 		node: Node = frontier.get()
 		for child in problem.expand(node):
-			if problem.is_goal(child.state):
-				return child
 			if child.state not in explored:
+				if problem.is_goal(child.state):
+					return child
 				explored.add(child.state)
 				frontier.put(child)
 	return None

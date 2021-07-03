@@ -8,9 +8,9 @@ from search_problems.util import Problem
 
 def depth_limited_search(problem: Problem, depth: int) -> Optional[Node]:
 	"""
-	Performs a depth-first search with a given max depth where the depth value itself
-	is NOT included in the search. Meaning that a depth of 1 will traverse the root
-	node but NOT it's children. It will stop once depth 1 is reached.
+	Performs a depth-first search with a given max depth where the depth value
+	itself is included in the search. Meaning that a depth of '1' will traverse
+	the root and it's children. A depth of '0' will check only the root.
 
 	This algorithm will prevent cycles by asserting a child state has not been
 	visited by one of the parent nodes. However, it will not prevent the search
@@ -26,17 +26,17 @@ def depth_limited_search(problem: Problem, depth: int) -> Optional[Node]:
 	frontier.put(Node(problem.initial_state))
 
 	while not frontier.empty():
+		print('hi')
 		node: Node = frontier.get()
 		if problem.is_goal(node.state):
 			return node
+		path = node.path_to_root()
 		for child in problem.expand(node):
-			path = child.path_to_root()
 			if any(filter(lambda n: n.state == child.state, path)) \
 				or len(path) > depth:
 				# this node has either been visited or max depth reached - stop
 				continue
-			if child not in frontier:
-				frontier.put(child)
+			frontier.put(child)
 	return None
 
 
@@ -53,7 +53,7 @@ def iterative_deepening_search(problem: Problem) -> Optional[Node]:
 	:param problem: Problem
 	:return: Node or None
 	"""
-	for e in range(start=1, stop=sys.maxsize):
+	for e in range(sys.maxsize):
 		result = depth_limited_search(problem, e)
 		if isinstance(result, Node):
 			return result

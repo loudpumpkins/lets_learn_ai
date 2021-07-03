@@ -54,7 +54,7 @@ def depth_first_search_with_reached(problem: Problem) -> Optional[Node]:
 		if problem.is_goal(node.state):
 			return node
 		for child in problem.expand(node):
-			if not node.explored(child.state) and child not in frontier:
+			if not child.explored(child.state):
 				frontier.put(child)
 	return None
 
@@ -79,9 +79,9 @@ def depth_first_search_with_reached_and_tag(problem: Problem) -> Optional[Node]:
 
 	while not frontier.empty():
 		node: Node = frontier.get()
-		if problem.is_goal(node.state):
-			return node
 		for child in problem.expand(node):
-			if not node.explored(child.state) and child not in frontier:
+			if not child.explored(child.state):
+				if problem.is_goal(child.state):
+					return child
 				frontier.put(child)
 	return None

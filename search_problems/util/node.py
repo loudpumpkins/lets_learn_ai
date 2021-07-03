@@ -30,9 +30,13 @@ class Node(object):
 		:param state: type(self.state)
 		:return: bool
 		"""
-		if any(filter(lambda n: n.state == state, self.path_to_root())):
+		if any(filter(lambda n: n.state == state, self.path_to_root()[1:])):
 			return True
 		return False
+
+	def path_from_root(self):
+		"""Return a list of nodes forming the path from the root to this node."""
+		return list(reversed(self.path_to_root()))
 
 	def path_to_root(self):
 		"""
@@ -45,3 +49,7 @@ class Node(object):
 			path.append(node)
 			node = node.parent
 		return path
+
+	def solution(self):
+		"""Return the sequence of actions to go from the root to this node."""
+		return [node.action for node in self.path_from_root()[1:]]
