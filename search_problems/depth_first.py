@@ -40,8 +40,9 @@ def depth_first_search_with_reached(problem: Problem) -> Optional[Node]:
 	The `Node` contains the solution, path costs and all the details of a
 	particular solution.
 
-	This algorithm will track previously reached states and will not visit
-	them again.
+	This algorithm will prevent cycles by asserting a child state has not been
+	visited by one of the parent nodes. However, it will not prevent the search
+	of redundant paths.
 
 	:param problem: Implemented Problem class
 	:return: Node or None
@@ -67,9 +68,9 @@ def depth_first_search_with_reached_and_tag(problem: Problem) -> Optional[Node]:
 	The `Node` contains the solution, path costs and all the details of a
 	particular solution.
 
-	This algorithm will track previously reached states and will not visit
-	them again. It will also test for goal at generation; before it is added to
-	the frontier.
+	This algorithm will prevent cycles by asserting a child state has not been
+	visited by one of the parent nodes. However, it will not prevent the search
+	of redundant paths.
 
 	:param problem: Implemented Problem class
 	:return: Node or None

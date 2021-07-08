@@ -16,6 +16,9 @@ def depth_limited_search(problem: Problem, depth: int) -> Optional[Node]:
 	visited by one of the parent nodes. However, it will not prevent the search
 	of redundant paths.
 
+	Will test node for goal state at generation -- essentially implements
+	depth_first_search_with_reached_and_tag(problem: Problem)
+
 	Returns a `Node` if solution is found or `None` otherwise.
 
 	:param problem: Problem
@@ -27,13 +30,13 @@ def depth_limited_search(problem: Problem, depth: int) -> Optional[Node]:
 
 	while not frontier.empty():
 		node: Node = frontier.get()
-		if problem.is_goal(node.state):
-			return node
 		path = node.path_to_root()
+		if len(path) > depth:
+			continue
 		for child in problem.expand(node):
-			if any(filter(lambda n: n.state == child.state, path)) \
-				or len(path) > depth:
-				# this node has either been visited or max depth reached - stop
+			if problem.is_goal(child.state):
+				return child
+			if any(filter(lambda n: n.state == child.state, path)):
 				continue
 			frontier.put(child)
 	return None
