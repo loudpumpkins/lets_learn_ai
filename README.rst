@@ -8,7 +8,9 @@ Search Problem
 
 Contains the informed and uninformed graph search algorithms.
 Must implement a ``Problem`` class: ``from search_problems import Problem``
-See ``search.py`` for an example.
+
+See ``search_problem_uninformed.ipynb`` for detailed explanation or ``search_problem.py``
+for an implementation example.
 
 Available functions from ``search_problems``:
 
