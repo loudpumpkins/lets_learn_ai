@@ -18,6 +18,9 @@ class Node(object):
 		self.parent = parent
 		self.action = action
 		self.path_cost = path_cost
+		self.depth = 0
+		if parent is not None:
+			self.depth = parent.depth + 1
 
 	def __repr__(self):
 		if self.parent is None:

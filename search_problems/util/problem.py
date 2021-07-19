@@ -19,6 +19,17 @@ class Problem(object):
 		"""
 		raise NotImplemented("Abstract class method not implemented")
 
+	def action_cost(self, state, action):
+		"""
+		Returns the cost of performing an action. Default behaviour is to
+		evaluate all action costs equally; return 1
+
+		:param state: Any: Same datatype as the `state` in `Node`
+		:param action: Any
+		:return: int
+		"""
+		return 1
+
 	def is_goal(self, state):
 		"""
 		Test the given state to see if a goal has been reached. The `state` is
@@ -47,5 +58,9 @@ class Problem(object):
 		:param node: Node
 		:return: list[Node]
 		"""
-		return [Node(self.transition(node.state, action), node, action) for action in
-		        self.actions(node.state)]
+		successors = []
+		for action in self.actions(node.state):
+			resultant_state = self.transition(node.state, action)
+			path_cost = node.path_cost + self.action_cost(node.state, action)
+			successors.append(Node(resultant_state, node, action, path_cost))
+		return successors
