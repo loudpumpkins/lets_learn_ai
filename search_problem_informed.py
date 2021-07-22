@@ -108,7 +108,6 @@ def misplaced_tiles_heuristic(node: Node) -> int:
 
 
 def print_puzzle(s):
-	s = list(s)
 	print(f"+-------+\n| {s[0]} {s[1]} {s[2]} |\n| {s[3]} {s[4]} {s[5]} |\n| {s[6]} {s[7]} {s[8]} |\n+-------+")
 
 
@@ -125,7 +124,7 @@ def generate_random_board():
 	return state
 
 
-initial_state = generate_random_board()
+initial_state = '_13425786'
 print('Initial State:')
 print_puzzle(initial_state)
 problem = Puzzle(initial_state)

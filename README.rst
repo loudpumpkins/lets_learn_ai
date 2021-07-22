@@ -1,7 +1,7 @@
 Let's learn AI - Source Code
 ============================
 
-Companion to the YouTube series "Let's learn AI" - https://www.youtube.com/channel/UCQFtF8uYQuzmOpzrmKnX77Q  
+Companion to problem solving lessons on - https://loudpumpkins.com/category/problem-solving-ai/
 
 Search Problem
 --------------
@@ -9,8 +9,9 @@ Search Problem
 Contains the informed and uninformed graph search algorithms.
 Must implement a ``Problem`` class: ``from search_problems import Problem``
 
-See ``search_problem_uninformed.ipynb`` for detailed explanation or ``search_problem.py``
-for an implementation example.
+See ``search_problem_uninformed.ipynb`` for detailed explanation or
+``search_problem_uninformed.py`` / ``search_problem_uninformed.py`` for
+implementation examples.
 
 Available functions from ``search_problems``:
 
@@ -26,4 +27,9 @@ Available functions from ``search_problems``:
 
 	def depth_limited_search(problem: Problem, depth: int) -> Optional[Node]: ...
 	def iterative_deepening_search(problem: Problem) -> Optional[Node]: ...
+
+
+	def greedy_first_search(problem: Problem, h: Callable) -> Optional[Node]: ...
+	def a_star_search(problem: Problem, h: Callable) -> Optional[Node]: ...
+	def best_first_search(problem: Problem, f: Callable) -> Optional[Node]: ...
 
